@@ -6,7 +6,8 @@ This package (SUrface-wave Grader with ARtificial intelligence or SUGAR) automat
 
 If you use this package for your research, please consider cite:
 
-Chai, C., Kintner, J., Cleveland, K. M., Luo, J., Maceira, M., & Ammon, C. J. (2021). Automatic Waveform Quality Control for Surface Waves Using Machine Learning. https://doi.org/10.1002/essoar.10507941.3
+* Chai, C., Kintner, J., Cleveland, K. M., Luo, J., Maceira, M., & Ammon, C. J. (2021). Automatic Waveform Quality Control for Surface Waves Using Machine Learning. https://doi.org/10.1002/essoar.10507941.3
+* Chai, C., Luo, J., and Maceira, M. ccp137/SUGAR. Computer Software. https://github.com/ccp137/SUGAR. 06 Jan. 2022. Web. https://doi.org/10.11578/dc.20220106.9
 
 
 ## Install Required Packages
