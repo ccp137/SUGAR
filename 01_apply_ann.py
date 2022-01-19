@@ -18,7 +18,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/.
 
-Version 1.0
+Version 1.1
 
 Developed by Chengping Chai (chaic@ornl.gov) in collaboration with 
 Jonas Kintner, K. Michael Cleveland, Jingyi Luo, Monica Maceira, Charles J. Ammon
@@ -188,6 +188,8 @@ if __name__ == '__main__':
     #
     for ibatch in range(len(batch_fname_list)):
         feature_list = []
+        used_files = []
+        bad_files = []
         divide_list = ['abs_energy', 'skewness', 'kurtosis', 'maximum', 'mean', 'median', 'minimum', 'std', 
                            'quantile_10', 'quantile_20', 'quantile_30', 'quantile_40', 'quantile_50',
                            'quantile_60', 'quantile_70', 'quantile_80', 'quantile_90']
@@ -259,12 +261,13 @@ if __name__ == '__main__':
                             features_merged['grade'] = grade
                             features_merged['id'] = trace_id
                             feature_list.append(features_merged)
+                            used_files.append(afname)
                         else:
-                            st[0].stats.sac['iqual'] = 0
+                            bad_files.append(afname)
                     else:
-                        st[0].stats.sac['iqual'] = 0
+                        bad_files.append(afname)
                 else:
-                    st[0].stats.sac['iqual'] = 0
+                    bad_files.append(afname)
             else:
                 print("Can't find ", afile)
                 sys.exit()
@@ -279,6 +282,7 @@ if __name__ == '__main__':
                 if akey not in attrs_list:
                     data_list.append(a_feature[akey])
             x_list.append(np.array(data_list))
+        #
         if len(x_list) > 0:
             x_deploy = sc.transform(x_list)
             y_deploy = classifier.predict(x_deploy)
@@ -286,6 +290,11 @@ if __name__ == '__main__':
             #
             fid = open(output_dir+'/predicted_prob.txt', 'a')
             for i in range(len(feature_list)):
-                fid.write('{0}, {1:10.4f} \n'.format(batch_files[i].strip(), y_deploy[i][0]))
+                fid.write('{0}, {1:10.4f} \n'.format(used_files[i].strip(), y_deploy[i][0]))
             fid.close()
-            #
+        #
+        if len(bad_files) > 0:
+            fid = open(output_dir+'/files_not_graded.txt', 'a')
+            for i in range(len(bad_files)):
+                fid.write('{0} \n'.format(bad_files[i].strip()))
+            fid.close()

@@ -86,7 +86,7 @@ optional arguments:
                         Batch size.
 ```
 
-The output is a text file with two columns. The first column is the filename of the seismogram. The second column is the probability score (between 0 and 1) on whether a waveform should be accpeted. You may consider seismograms with probability scores larger than 0.5 as acceptable data. Waveforms that are not long enough in time will not have probability scores. Note the output will be appended if the output file is already exists.
+The output are two text files named as "predicted_prob.txt" and "files_not_graded.txt". The first file (predicted_prob.txt) contains two columns. The first column is the filename of the seismogram. The second column is the probability score (between 0 and 1) on whether a waveform should be accpeted. You may consider seismograms with probability scores larger than 0.5 as acceptable data. Waveforms that are not long enough in time will not have probability scores. The second file (files_not_graded.txt) stores the filenames that were not graded by the package. Note the output will be appended if the output files are already exists in the working directory.
 
 ## Change SAC Header
 
@@ -116,6 +116,18 @@ optional arguments:
                         Path to the file that contains the predicted
                         probabilities (default: ./predicted_prob.txt)
 ```
+
+## Contact
+
+If you have questions or noticed anything unusual in the results, please contact me at chaic@ornl.gov.
+
+
+## Acknowledgement
+
+* Kipton Barros
+* Singanallur Venkatakrishnan
+* Derek Rose
+* Chanel Deane
 
 ## Copyright
 
