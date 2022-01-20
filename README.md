@@ -9,6 +9,10 @@ If you use this package for your research, please consider cite:
 * Chai, C., Kintner, J., Cleveland, K. M., Luo, J., Maceira, M., & Ammon, C. J. (2021). Automatic Waveform Quality Control for Surface Waves Using Machine Learning. https://doi.org/10.1002/essoar.10507941.3
 * Chai, C., Luo, J., and Maceira, M. ccp137/SUGAR. Computer Software. https://github.com/ccp137/SUGAR. 06 Jan. 2022. Web. https://doi.org/10.11578/dc.20220106.9
 
+## Operating Systems Tested
+
+* macOS (version 11.2)
+* Linux (Ubuntu 20.04.3 LTS)
 
 ## Install Required Packages
 
@@ -24,7 +28,7 @@ This package was developed for Python 3.7. The following python packages are req
 
 Installation these packages through Anaconda (or Miniconda) is highly recommended. You can find instructions on how to install Anaconda at https://docs.continuum.io/anaconda/install.
 
-Once you have Anaconda installed, the required packages can be installed using these commands in the terminal. You may need to create an Anaconda environment to avoid conflicts with existing Python packages (see https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you get an error message that says a package can not be found, you can install the package using a similar command or search online for instructions.
+Once you have Anaconda installed, the required packages can be installed using the following commands in the terminal. You may need to create an Anaconda environment to avoid conflicts with existing Python packages (see https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). If you get an error message that says a package can not be found, you can install the package using a similar command or search online for instructions.
 
 ```bash
 conda install numpy=1.21.1
@@ -55,13 +59,13 @@ The following SAC headers are required. The time (nzyear etc.) in SAC headers ha
 
 ## Apply SUGAR
 
-The trained model can be found as trained_model/ann_202110131500.hdf5. To apply the model to new data, you will need to provide a plain text file with a list of filenames in it. These filenames will be the waveforms (in SAC format) that you want to grade. See filelist.txt for an example. After installing all the required packages, you can use the machine leanring model with the following command. 
+The trained model can be found as trained_model/ann_202110131500.hdf5. To apply the model to new data, you will need to provide a plain text file with a list of filenames in it. These filenames will be the waveforms (in SAC format) that you want to grade. See filelist.txt for an example. After installing all the required packages, you can try the machine learning model with the example data provided using the following command. 
 
 ```bash
 python 01_apply_ann.py
 ```
 
-More details on the useage of 01_apply_ann.py.
+More details on the useage of 01_apply_ann.py are listed below.
 
 ```
 usage: 01_apply_ann.py [-h] [--filelist_name FILELIST_NAME]
@@ -90,7 +94,7 @@ The output are two text files named as "predicted_prob.txt" and "files_not_grade
 
 ## Change SAC Header
 
-To change the SAC header "iqual", you can use the following command.
+To change the SAC header "iqual" and store the quality label, you can use the following command.
 
 ```bash
 python 02_change_sac_header.py
@@ -98,7 +102,7 @@ python 02_change_sac_header.py
 
 --threshold can be used to set the threshold (>= 0.5) for accepting waveforms. If 0.5 was used, two labels (0 for rejected and 2 for accepted) are assigned to all the waveforms. If a value larger than 0.5 was used, three labels (0 for rejected; 1 for unclear; 2 for accepted) will be assigned. 
 
-More details on the usage of 02_change_sac_header.py can be found by running "python 02_change_sac_header.py -h".
+More details on the usage of 02_change_sac_header.py can be found below or by running "python 02_change_sac_header.py -h".
 
 ```
 usage: 02_change_sac_header.py [-h] [--threshold THRESHOLD]
@@ -122,7 +126,7 @@ optional arguments:
 If you have questions or noticed anything unusual in the results, please contact me at chaic@ornl.gov.
 
 
-## Acknowledgement
+## Acknowledgements
 
 * Kipton Barros
 * Singanallur Venkatakrishnan
